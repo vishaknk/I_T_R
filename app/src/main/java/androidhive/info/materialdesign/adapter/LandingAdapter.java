@@ -74,12 +74,13 @@ public class LandingAdapter extends BaseAdapter {
         TextView title = (TextView) convertView.findViewById(R.id.title);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width,_screen_height/2);
         frame_lay.setLayoutParams(lp);
-        // thumbnail image
-        thumbNail.setImageUrl("http://stage.itraveller.com/backend/images/destinations/kerala.jpg", imageLoader);
 
         // getting data for the row
         Landing m = LandingItems.get(position);
- 
+
+        // thumbnail image
+        thumbNail.setImageUrl("http://stage.itraveller.com/backend/images/destinations/" + m.getRegion_Name().toLowerCase() + ".jpg" , imageLoader);
+        //Log.i("ImageURL", "http://stage.itraveller.com/backend/images/destinations/" + m.getRegion_Name() + ".jpg");
         // title
         title.setText(m.getRegion_Name());
  

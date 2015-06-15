@@ -64,6 +64,7 @@ public class FragmentDrawer extends Fragment {
         titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,7 +95,8 @@ public class FragmentDrawer extends Fragment {
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
-        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black);
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar , R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);

@@ -16,8 +16,9 @@
         android:id="@+id/searchtext"
         android:drawableRight="@drawable/pin_mark"
         android:padding="8dp"
+        android:focusableInTouchMode="false"
+        android:textSize="16sp"
         android:hint="@string/search"
-        android:focusable="false"
         android:layout_alignParentTop="true"
         android:background="@drawable/round_edittext"
         android:layout_margin="20dp" />

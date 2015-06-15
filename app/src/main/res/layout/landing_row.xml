@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <!-- Thumbnail Image -->
-    <!-- Movie Title -->
 
     <FrameLayout
         android:id="@+id/imgMain"
@@ -42,7 +41,7 @@
                 android:layout_marginLeft="10dp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
         </RelativeLayout>
 

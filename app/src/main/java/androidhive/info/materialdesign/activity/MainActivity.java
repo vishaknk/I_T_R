@@ -1,10 +1,8 @@
 package androidhive.info.materialdesign.activity;
 
 
-import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,15 +35,20 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         setContentView(R.layout.activity_main);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        mToolbar.inflateMenu(R.menu.menu_main);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black);
+        getSupportActionBar().show();
 
         //To save Screen, Actionbar and Statusbar Height
         editor = getSharedPreferences(MY_PREFS, MODE_PRIVATE).edit();
         editor.putInt("Status_Height",getStatusBarHeight());
         editor.putInt("Screen_Height",getScreenHeight());
-        editor.putInt("Screen_Width",getScreenWidth());
+        editor.putInt("Screen_Width", getScreenWidth());
         editor.commit();
         Log.i("iTraveller", "Status_Height " + getStatusBarHeight());
         Log.i("iTraveller", "Height " + getScreenHeight());
@@ -100,9 +102,18 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         Log.i("iTraveller", "ActionBar_Height " + getActionBarHeight());
-        editor.putInt("ActionBar_Height",getActionBarHeight());
+        editor.putInt("ActionBar_Height", getActionBarHeight());
         editor.commit();
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black);
+        getSupportActionBar().show();
+        return true;
+    }
+
+
+
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
         return true;
     }
 
@@ -110,18 +121,19 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify a parent activity in AndroidManifest.xml
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
         }
 
         if(id == R.id.action_search){
             Toast.makeText(getApplicationContext(), "Search action is selected!", Toast.LENGTH_SHORT).show();
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -136,7 +148,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
-                fragment = new HomeFragment();
+                fragment = new LandingActivity();
                 title = getString(R.string.title_home);
                 break;
             case 1:
@@ -158,7 +170,7 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             fragmentTransaction.commit();
 
             // set the toolbar title
-            getSupportActionBar().setTitle(title);
+            //getSupportActionBar().setTitle(title);
         }
     }
 }
